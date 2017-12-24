@@ -1,0 +1,10 @@
+
+State Machine - |snake_ram|ram_state
+Name ram_state.ram_clr_tail ram_state.ram_check ram_state.ram_render ram_state.ram_set_head ram_state.ram_set_apple ram_state.ram_gen_apple ram_state.ram_clr 
+ram_state.ram_clr 0 0 0 0 0 0 0 
+ram_state.ram_gen_apple 0 0 0 0 0 1 1 
+ram_state.ram_set_apple 0 0 0 0 1 0 1 
+ram_state.ram_set_head 0 0 0 1 0 0 1 
+ram_state.ram_render 0 0 1 0 0 0 1 
+ram_state.ram_check 0 1 0 0 0 0 1 
+ram_state.ram_clr_tail 1 0 0 0 0 0 1 

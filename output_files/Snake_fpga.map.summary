@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Dec 24 22:20:46 2017
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : Snake_fpga
+Top-level Entity Name : snake_ram
+Family : Cyclone III
+Total logic elements : 454
+    Total combinational functions : 438
+    Dedicated logic registers : 164
+Total registers : 164
+Total pins : 44
+Total virtual pins : 0
+Total memory bits : 2,048
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

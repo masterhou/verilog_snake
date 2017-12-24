@@ -1,0 +1,160 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.1.0 Build 162 10/23/2013 SJ Full Version
+# Date created = 17:45:04  December 09, 2017
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Snake_fpga_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone III"
+set_global_assignment -name DEVICE EP3C25Q240C8
+set_global_assignment -name TOP_LEVEL_ENTITY snake_ram
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:45:04  DECEMBER 09, 2017"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 240
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_151 -to clk
+set_location_assignment PIN_109 -to hsync
+set_location_assignment PIN_145 -to rst
+set_location_assignment PIN_100 -to vga_b[3]
+set_location_assignment PIN_103 -to vga_b[2]
+set_location_assignment PIN_106 -to vga_b[1]
+set_location_assignment PIN_107 -to vga_b[0]
+set_location_assignment PIN_94 -to vga_g[3]
+set_location_assignment PIN_95 -to vga_g[2]
+set_location_assignment PIN_98 -to vga_g[1]
+set_location_assignment PIN_99 -to vga_g[0]
+set_location_assignment PIN_84 -to vga_r[3]
+set_location_assignment PIN_87 -to vga_r[2]
+set_location_assignment PIN_88 -to vga_r[1]
+set_location_assignment PIN_93 -to vga_r[0]
+set_location_assignment PIN_108 -to vsync
+set_location_assignment PIN_72 -to LEDOut[7]
+set_location_assignment PIN_76 -to LEDOut[6]
+set_location_assignment PIN_68 -to LEDOut[5]
+set_location_assignment PIN_70 -to LEDOut[4]
+set_location_assignment PIN_71 -to LEDOut[3]
+set_location_assignment PIN_73 -to LEDOut[2]
+set_location_assignment PIN_65 -to LEDOut[1]
+set_location_assignment PIN_69 -to LEDOut[0]
+set_location_assignment PIN_81 -to DigitSelect[2]
+set_location_assignment PIN_80 -to DigitSelect[1]
+set_location_assignment PIN_78 -to DigitSelect[0]
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_161 -to col[3]
+set_location_assignment PIN_160 -to col[2]
+set_location_assignment PIN_159 -to col[1]
+set_location_assignment PIN_148 -to col[0]
+set_location_assignment PIN_162 -to row[3]
+set_location_assignment PIN_164 -to row[2]
+set_location_assignment PIN_166 -to row[1]
+set_location_assignment PIN_167 -to row[0]
+set_location_assignment PIN_120 -to sw_brick
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_location_assignment PIN_110 -to Light[7]
+set_location_assignment PIN_111 -to Light[6]
+set_location_assignment PIN_112 -to Light[5]
+set_location_assignment PIN_113 -to Light[4]
+set_location_assignment PIN_114 -to Light[3]
+set_location_assignment PIN_117 -to Light[2]
+set_location_assignment PIN_118 -to Light[1]
+set_location_assignment PIN_119 -to Light[0]
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DigitSelect[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DigitSelect[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hsync
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sw_brick
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_g[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_g[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_g[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_g[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_r[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_r[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_r[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_r[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vsync
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DigitSelect[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to col[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to col[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to col[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to col[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to row[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to row[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to row[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to row[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[0]
+set_global_assignment -name CDF_FILE output_files/Snake_fpga.cdf
+set_global_assignment -name VERILOG_FILE keypad.v
+set_global_assignment -name VERILOG_FILE snake.v
+set_global_assignment -name VERILOG_FILE vga.v
+set_global_assignment -name VERILOG_FILE led8.v
+set_global_assignment -name VERILOG_FILE LFSR8_11D.v
+set_global_assignment -name QIP_FILE vram.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

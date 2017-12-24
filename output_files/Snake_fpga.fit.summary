@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Dec 24 22:20:57 2017
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : Snake_fpga
+Top-level Entity Name : snake_ram
+Family : Cyclone III
+Device : EP3C25Q240C8
+Timing Models : Final
+Total logic elements : 452 / 24,624 ( 2 % )
+    Total combinational functions : 438 / 24,624 ( 2 % )
+    Dedicated logic registers : 164 / 24,624 ( < 1 % )
+Total registers : 164
+Total pins : 44 / 149 ( 30 % )
+Total virtual pins : 0
+Total memory bits : 2,048 / 608,256 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

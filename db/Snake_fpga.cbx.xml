@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Snake_fpga">
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake_ram|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_2eh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake_ram|lpm_mult:Mult2|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_2eh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake_ram|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_2eh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake_ram|lpm_mult:Mult3|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_2eh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake_ram|vram:vram|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_5en1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

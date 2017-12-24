@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at keypad.v(18): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at snake.v(5): object "row" differs only in case from object "Row" in the same scope
+Info (10281): Verilog HDL Declaration information at snake.v(6): object "col" differs only in case from object "Col" in the same scope
+Info (10281): Verilog HDL Declaration information at snake.v(48): object "LED" differs only in case from object "led" in the same scope
