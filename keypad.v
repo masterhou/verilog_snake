@@ -7,14 +7,14 @@ module keypad4x4(
 	output scan_clk
 );
 
-reg[18:0] cnt;
+reg[10:0] cnt;
 reg[3:0] rowdown;
 
 always @(posedge clk or negedge rst)
 	if(!rst) cnt<=1'b0;
 	else cnt <= cnt + 1'b1;
 
-wire[1:0] index = cnt[18:17];
+wire[1:0] index = cnt[10:9];
 always @(posedge clk or negedge rst) begin
 	if(!rst) col = 4'b0000;
 	else 
@@ -27,7 +27,7 @@ always @(posedge clk or negedge rst) begin
 end
 
 assign keydown = ~(rowdown==2'b00);
-assign scan_clk = cnt[14];
+assign scan_clk = cnt[4];
 
 always @(posedge scan_clk or negedge rst)
 	if(!rst) code<=4'h0;

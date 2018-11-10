@@ -87,8 +87,7 @@ set_location_assignment PIN_162 -to row[3]
 set_location_assignment PIN_164 -to row[2]
 set_location_assignment PIN_166 -to row[1]
 set_location_assignment PIN_167 -to row[0]
-set_location_assignment PIN_120 -to sw_brick
-set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
 set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
@@ -119,7 +118,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDOut[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hsync
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sw_brick
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vga_b[1]
@@ -150,11 +148,33 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Light[0]
-set_global_assignment -name CDF_FILE output_files/Snake_fpga.cdf
+set_global_assignment -name FORCE_CONFIGURATION_VCCIO ON
+set_global_assignment -name CYCLONEIII_CONFIGURATION_DEVICE EPCS16
+set_location_assignment PIN_120 -to Speed[5]
+set_location_assignment PIN_126 -to Speed[4]
+set_location_assignment PIN_127 -to Speed[3]
+set_location_assignment PIN_128 -to Speed[2]
+set_location_assignment PIN_131 -to Speed[1]
+set_location_assignment PIN_132 -to Speed[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Speed[5]
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_NCE_PIN OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name VERILOG_FILE I2C_Controller.v
+set_global_assignment -name VERILOG_FILE para_define.v
 set_global_assignment -name VERILOG_FILE keypad.v
 set_global_assignment -name VERILOG_FILE snake.v
 set_global_assignment -name VERILOG_FILE vga.v
 set_global_assignment -name VERILOG_FILE led8.v
 set_global_assignment -name VERILOG_FILE LFSR8_11D.v
 set_global_assignment -name QIP_FILE vram.qip
+set_global_assignment -name VERILOG_FILE sdram.v
+set_global_assignment -name QIP_FILE chrom.qip
+set_global_assignment -name VERILOG_FILE text.v
+set_global_assignment -name VERILOG_FILE I2C_NS2009.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

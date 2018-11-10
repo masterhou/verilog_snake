@@ -1,4 +1,4 @@
-module vga_800_600(
+module vga_800_600 (
 	input clk, rst,
 	output reg hsync, vsync,
 	output reg[10:0] h_cnt,
@@ -43,7 +43,7 @@ always @(posedge clk or negedge rst)
 //----------------------------------
 assign valid = h_cnt>=h_a+h_b && h_cnt<=h_a+h_b+h_c && v_cnt>=v_a+v_b && v_cnt<=v_a+v_b+v_c;
 
-assign pixel_x = h_cnt-h_a-h_b+2'd2; // vram read latecy 2 clk
+assign pixel_x = h_cnt-h_a-h_b;
 assign pixel_y = v_cnt-v_a-v_b;
 
 endmodule
