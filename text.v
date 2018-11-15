@@ -40,7 +40,7 @@ always @(posedge clk or negedge rst)
 		dout <= 1'b0;
 	end
 
-always @(rom_adress)
+always @(rom_adress or y or posy)
 	if(y >= posy && y < posy + `CHAR_HEIGHT)
 		rom_adr <= rom_adress + (y-posy);
 		
@@ -54,7 +54,7 @@ module block #(parameter N=4)
 	input wire[9:0] posx, posy,
 	input wire[10:0] x, y,
 	input wire[11:0] number,
-	output wire do
+	output wire dout
 );
 `include "para_define.v"
 
@@ -65,7 +65,7 @@ reg[3:0] char[0:4];
 assign xx = (x-posx);
 assign i = xx[9:5]<N ?  xx[9:5] : 0;
 assign poxx = posx + `CHAR_WIDETH*i;
-text text(clk, rst, rom_address, rom_data, poxx, posy, x, y, char[i], do);
+text text(clk, rst, rom_address, rom_data, poxx, posy, x, y, char[i], dout);
 
 always @(number) begin
 	char[0] <= number / 1000;

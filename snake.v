@@ -24,17 +24,22 @@ localparam 	None_Color = {4'd15, 4'd15, 4'd15},
 				Body_Color = {4'd09, 4'd15, 4'd00}, 
 				Brick_Color ={4'd05, 4'd05, 4'd07},  
 				Apple_Color ={4'd15, 4'd00, 4'd00},		
-				Score_Color ={4'd08, 4'd08, 4'h15}, 
-				HiSco_Color ={4'd15, 4'd08, 4'h00};
-			
-localparam Row = 5'd25, Col=5'd19;
+				Score_Color ={4'd08, 4'd08, 4'd15}, 
+				HiSco_Color ={4'd15, 4'd08, 4'd00};
+`define HD
+`ifdef HD
+localparam D=5, P=4, S=2;
+`else
+localparam D=4, P=5, S=1;
+`endif
+localparam Row = 5'd25*S, Col=5'd19*S;
+localparam Row_1 = Row-1, Col_1=Col-1;
+
 localparam Key_Left=4'h2, Key_Right=4'h4, Key_Down=4'h3, Key_Up=4'h7;
-//localparam N=4; // latency
 
-reg[11:0] score, hi_score;
-
+///////////////////////////////////
 // data and video buffer
-reg[8:0] raddr, waddr;
+reg[10:0] raddr, waddr;
 reg[3:0] vdata;
 wire[3:0] vout;
 vram u_vram(
@@ -50,19 +55,25 @@ vram u_vram(
 	.q_b			(vout)
 );
 	
+///////////////////////////////////
+
 reg[1:0] head_dir;
-reg[4:0] head_pos_x, head_pos_y;
-reg[4:0] tail_pos_x, tail_pos_y;
-reg[4:0] appl_pos_x, appl_pos_y;
+reg[D:0] head_pos_x, head_pos_y;
+reg[D:0] tail_pos_x, tail_pos_y;
+reg[D:0] appl_pos_x, appl_pos_y;
+reg[5:0] speed_cnt;
+reg[11:0] score, hi_score;
+
+///////////////////////////////////
 
 wire[3:0] code;
 wire keydown, scan_clk;
 keypad4x4 key(v_cnt, rst, row, col, code, keydown, scan_clk);
 
+///////////////////////////////////
+
 wire[3:0] LED[7:0];
 led8 led(scan_clk, rst, LED[0], LED[1], LED[2], LED[3], LED[4], LED[5], LED[6], LED[7], LEDOut, DigitSelect);
-
-reg[4:0] speed_cnt;
 
 // debug info led /////////////////
 //assign Light[0] = ~keydown;
@@ -76,31 +87,41 @@ assign LED[2] = score[ 3:0];
 
 wire[7:0] randq;
 LFSR8_11D LFSR8_11D(clk, rst, randq);
-wire[4:0] rand_x = randq[3:0]+randq[6:4]; // 16+8=24
-wire[4:0] rand_y = randq[7:4]+randq[1:0]; // 16+3=19
+
+`ifdef HD
+wire[D:0] rand_x = randq[4:0]+randq[7:4]; // 32+16=48
+wire[D:0] rand_y = randq[7:3]+randq[1:0]; // 32+3=38
+`else
+wire[D:0] rand_x = randq[3:0]+randq[6:4]; // 16+8=24
+wire[D:0] rand_y = randq[7:4]+randq[1:0]; // 16+3=19
+`endif
+
+///////////////////////////////////
 
 wire[1:0] frame_sync;
 assign frame_sync[0] = v_cnt==1 && h_cnt==0;
 assign frame_sync[1] = v_cnt==1 && h_cnt==2;
 
+///////////////////////////////////
+
 reg[3:0] 	ram_state;
 localparam	ram_clr=0, ram_gen_apple=1, ram_set_apple=2, ram_set_head=3,
-			ram_logic=4, ram_check=5, ram_clr_tail=6, ram_start=7,
-			ram_gen_apple_d=8, ram_check_d=9, ram_clr_tail_d=10;
+				ram_logic=4, ram_check=5, ram_clr_tail=6, ram_start=7,
+				ram_gen_apple_d=8, ram_check_d=9, ram_clr_tail_d=10;
 
 always @(posedge clk or negedge rst)
 	if(!rst) begin
 		hi_score <= 1'b0;
-		{appl_pos_x, appl_pos_y} <= {5'd10, 5'd2};
-		{tail_pos_x, tail_pos_y} <= {5'd1, 5'd2};
+		appl_pos_x<=4'd9; appl_pos_y<=4'd2;
+		tail_pos_x<=4'd1; tail_pos_y<=4'd2;
 		ram_state <= ram_start;
 	end
 	else if(ram_state==ram_start) begin	// reset screen
 		speed_cnt <= 1'b0;
 		score <= 1'b0;
-		vdata <= {Right, None};
-		waddr <= 8'd0;
-		raddr <= 8'd0;
+		vdata <= 1'b0;
+		waddr <= 1'b0;
+		raddr <= 1'b0;
 		ram_state <= ram_clr;
 	end
 	else if(ram_state==ram_clr) begin	// reset screen
@@ -139,8 +160,8 @@ always @(posedge clk or negedge rst)
 			ram_state <= ram_set_head;	// save head turn direct
 		else if(frame_sync[1])		// new frame begin, start snake speed count
 			speed_cnt <= speed_cnt+1'b1;
-		if(x[9:5]<Row)
-			raddr <= Row*y[9:5] + x[9:5];	// read cell(32*32 pixel) for graphic render
+		if(x[9:P]<Row)
+			raddr <= Row*y[9:P] + x[9:P];	// read cell(32*32 pixel) for graphic render
 	end
 	else if(ram_state==ram_check_d)			// vram read latecy 2 clk
 		ram_state <= ram_check;
@@ -173,8 +194,9 @@ always @(posedge clk or negedge rst)
 wire clk_move= speed_cnt==Speed;
 // go ahead, move head position, before check collision one clock
 always @(posedge clk_move or negedge rst)
-	if(!rst)
-		{head_pos_x, head_pos_y} <= {5'd1, 5'd2};
+	if(!rst) begin
+		head_pos_x<=4'd1; head_pos_y<=4'd2;
+	end
 	else
 		move(head_dir, head_pos_x, head_pos_y);
 
@@ -193,12 +215,12 @@ always @(posedge keydown or negedge rst)
 		
 task move;
 	input wire[1:0] dir;
-	inout reg[4:0] px, py;
+	inout reg[D:0] px, py;
 	case(dir) // dir
-		Right: px <= px<5'd24 ? px + 1'b1 : 5'd00;
-		Left:  px <= px>5'd00 ? px - 1'b1 : 5'd24;
-		Up:	 py <= py>5'd00 ? py - 1'b1 : 5'd18;
-		Down:  py <= py<5'd18 ? py + 1'b1 : 5'd00;
+		Right: px <= px<Row_1 ? px + 1'b1 : 1'b00;
+		Left:  px <= px>1'b00 ? px - 1'b1 : Row_1;
+		Up:    py <= py>1'b00 ? py - 1'b1 : Col_1;
+		Down:  py <= py<Col_1 ? py + 1'b1 : 1'b00;
 	endcase
 endtask
 
